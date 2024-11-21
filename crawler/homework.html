@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #988882;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 20%;
+            background-color: #545454;
+            color: white;
+            padding: 20px;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 15px 0;
+            font-size: 16px;
+        }
+        .content {
+            width: 80%;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            justify-items: center;
+        }
+        .image-grid div {
+            border: 5px solid black;
+            padding: 5px;
+            background-color: white;
+            text-align: center;
+        }
+        .image-grid div img {
+            width: 100%;
+            height: auto;
+        }
+        .image-grid .big {
+            grid-column: span 2;
+            height: 450px;
+        }
+        .text-block {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 20px;
+            background-color: #988882;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .text-block span {
+             display: inline-block; /* 允许设置高度和宽度，同时保持内联元素的特性 */
+        writing-mode: vertical-rl; /* 设置文字垂直排列，从右到左 */
+        text-orientation: upright; /* 保持文字方向正常（非旋转） */
+            font-size: 30px;
+            color: black;
+
+        }
+        .lang-toggle {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-toggle">
+        <button>中文</button>
+        <button>English</button>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li>给压力</li>
+                <li>会玩吗你</li>
+                <li>太极弄云手</li>
+                <li>金太刀</li>
+                <li>季莹莹</li>
+                <li>岳山</li>
+                <li>振刀教程</li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <div class="image-grid">
+                <div class="big">
+                    <img src="https://img.jiaochengzhijia.com/uploadfile/2021/0717/20210717112350682.png"  alt="Fashion Image 1" style="height: 100%" >
+                </div>
+                <div style="height: 450px">
+                    <img src="https://file.moyublog.com/d/file/2023-03-23/3f8fe483b1cdfdb4105db54d1c7f3bd1.jpg" alt="Fashion Image 2" style="height: 100%">
+                </div>
+                <div style="height: 450px">
+                    <img src="https://ts1.cn.mm.bing.net/th/id/R-C.44b0890b31db4ed09e699d3fec0d307e?rik=Ej86U5BSTOcwVw&riu=http%3a%2f%2fwww.gamelook.com.cn%2fwp-content%2fuploads%2f2021%2f04%2fyjwjcs001.jpg&ehk=ATjN%2f8XnR9RrQCFOCREihQWDfUFwLhtQbYIfN7l9NKU%3d&risl=&pid=ImgRaw&r=0" alt="Fashion Image 3" style="height: 100%">
+                </div>
+                <div style="height: 450px">
+                    <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.j5mwftNf81Ces6S2UzZnjQHaDt?rs=1&pid=ImgDetMain" alt="Fashion Image 4" style="height: 100%">
+                </div>
+            </div>
+
+            <div class="text-block">
+                <span>源于生活的时尚</span> CLICK!
+            </div>
+
+            <div class="text-block">
+                街头即T台 <span>左右时尚界</span> Let's go!
+            </div>
+        </div>
+    </div>
+</body>
+</html>
