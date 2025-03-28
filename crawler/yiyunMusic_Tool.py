@@ -150,10 +150,33 @@ def comment(url ='https://music.163.com/weapi/song/enhance/player/url/v1?csrf_to
         content = comment['content']
         print(f"昵称: {nickname}, 评论内容: {content}")
 
-print("====================================================================")
-print("==================网易云助手===========================")
-print("1.下载网易云单曲")
-print("2.下载网易云歌单")
-print("3.爬取网易云单曲评论区")
-print("4,退出")
-download()
+def main():
+    while True:
+        print("\n====================================================================")
+        print("==================网易云助手===========================")
+        print("1.下载网易云单曲")
+        print("2.下载网易云歌单")
+        print("3.爬取网易云单曲评论区")
+        print("4.退出")
+        
+        user_input = input("请输入序号: ").strip()
+        
+        match user_input:
+            case '1':
+                download()
+            case '2':
+                Batch_download()
+            case '3':
+                comment()
+            case '4':
+                print("程序已退出")
+                break
+            case str(x) if x.isdigit():
+                print(f"无效选项 {user_input}，请重新输入 1-4")
+            case _:
+                print(f"输入格式错误，请重新输入数字 1-4")
+ 
+if __name__ == "__main__":
+    main()
+    
+
