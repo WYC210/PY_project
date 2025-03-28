@@ -5,36 +5,39 @@ import bs4
 from Crypto.Cipher import AES
 from base64 import b64decode, b64encode
 import json
-# url = f"https://dytt89.com/"
-# header = {
-#
-#     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0"
-# }
+url = f"https://dytt89.com/"
+header = {
+
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0"
+}
 
 
-#
-# text = requests.get(url, headers=header)
-# text.encoding = 'gb2312'
-#
-#
-#
-# obj = re.compile(r'2024必看热片.*?<ul>(?P<ul>.*?)</ul>',re.S)
-# obj1 = re.compile(r"<li>.*?/(?P<href>.*?)'",re.S)
-# obj2 = re.compile(r"《(?P<name>.*?)》",re.S)
-# text = obj.finditer(text.text)
-# dic = {}
-# for i in text:
-#     ul =i.group('ul')
-#
-#
-#     movie_names = obj2.finditer(ul)
-#     result = obj1.finditer(ul)
-#     for k, j in zip(movie_names, result):
-#         key = k.group('name')
-#         href = url + j.group('href')
-#         dic[key] = href
-#
-# print(dic)
+
+text = requests.get(url, headers=header)
+text.encoding = 'gb2312'
+
+
+
+obj = re.compile(r'2024必看热片.*?<ul>(?P<ul>.*?)</ul>',re.S)
+obj1 = re.compile(r"<li>.*?/(?P<href>.*?)'",re.S)
+obj2 = re.compile(r"《(?P<name>.*?)》",re.S)
+text = obj.finditer(text.text)
+dic = {}
+for i in text:
+    ul =i.group('ul')
+
+
+    movie_names = obj2.finditer(ul)
+    result = obj1.finditer(ul)
+    for k, j in zip(movie_names, result):
+        key = k.group('name')
+        href = url + j.group('href')
+        dic[key] = href
+
+print(dic)
+
+
+# 北京新发地菜价
 def vegetable():
     header = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0"
@@ -71,7 +74,7 @@ def vegetable():
                 # print(i['pubDate'])
     print("完成写入")
 
-
+# 中国天气网获取天气
 def weather():
     url = "https://i.tq121.com.cn/j/webgis_v2/city.json"
     header = {
@@ -99,6 +102,8 @@ def weather():
             f.write(f"{data[i]['n']} : {value}\n")
 
 
+
+# 爬取电影
 def movie():
     url = 'https://1daifu.com/mahua/1.html'
     header = {
@@ -111,7 +116,7 @@ def movie():
     movies = soup.find('ul', class_='screen_list sx_tz clearfix')
     print(movies)
 
-
+#  梨视频下载
 def li_movie():
     url = 'https://www.pearvideo.com/video_1796529'
     coutId = url.split('_')[1]
@@ -130,6 +135,7 @@ def li_movie():
     with open('video.mp4', 'wb') as f:
         f.write(requests.get(video_url, headers=header).content)
 
+# 下载网易云歌曲
 def yiyun(url ="https://music.163.com/weapi/comment/resource/comments/get?csrf_token="):
     # "/weapi/privacy/info/get/v2?csrf_token="
     # "https://music.163.com/weapi/comment/resource/comments/get?csrf_token="
@@ -179,10 +185,10 @@ def yiyun(url ="https://music.163.com/weapi/comment/resource/comments/get?csrf_t
     all_data = resp.json()
 
     #评论区
-    # for comment in all_data['data']['comments']:
-    #     nickname = comment['user']['nickname']
-    #     content = comment['content']
-    #     print(f"昵称: {nickname}, 评论内容: {content}")
+    for comment in all_data['data']['comments']:
+        nickname = comment['user']['nickname']
+        content = comment['content']
+        print(f"昵称: {nickname}, 评论内容: {content}")
     print(all_data)
     """function a(a) {  #这个是一个随机生成16位字符串
             var d, e, b = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", c = "";
@@ -217,29 +223,29 @@ def yiyun(url ="https://music.163.com/weapi/comment/resource/comments/get?csrf_t
             h
         }"""
 
-# import requests
-#
-# url = 'https://bookapi.zongheng.com/api/chapter/getChapterList'
-# header = {
-# "x-trace-id":
-# "400c9c4bec7a82f8",
-#
-# "host":
-# "bookapi.zongheng.com",
-#     "Content-Type": "application/x-www-form-urlencoded",
-#     "Referer": 'https://read.zongheng.com/',
-#     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0"
-# }
-# data = {
-#    " bookId": "1322528"
-# }
-#
-# # 使用 json 参数
-# response = requests.post(url, headers=header,data=data)
-# response.encoding = 'utf-8'
-#
-# try:
-#     print(response.json())
-# except ValueError:
-#     print("响应不是有效的 JSON:", response.text)
-yiyun()
+# 爬取小说
+import requests
+
+url = 'https://bookapi.zongheng.com/api/chapter/getChapterList'
+header = {
+"x-trace-id":
+"400c9c4bec7a82f8",
+
+"host":
+"bookapi.zongheng.com",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Referer": 'https://read.zongheng.com/',
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0"
+}
+data = {
+   " bookId": "1322528"
+}
+
+# 使用 json 参数
+response = requests.post(url, headers=header,data=data)
+response.encoding = 'utf-8'
+
+try:
+    print(response.json())
+except ValueError:
+    print("响应不是有效的 JSON:", response.text)
